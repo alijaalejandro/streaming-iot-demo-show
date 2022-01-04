@@ -1,0 +1,24 @@
+{'name': 'galeo-dev-iot-events'}
+{'machine_critical_stop': 'no_check', 'machine_revision': '01/05/2020', 'machine_status': 'normal', 'machineid': '15AB45CE'}
+Producing Avro record: galeo-dev-iot-events
+
+Traceback (most recent call last):
+  File "productor-4.py", line 85, in <module>
+    schedule.run_pending()
+  File "/usr/lib/python2.7/dist-packages/schedule/__init__.py", line 367, in run_pending
+    default_scheduler.run_pending()
+  File "/usr/lib/python2.7/dist-packages/schedule/__init__.py", line 64, in run_pending
+    self._run_job(job)
+  File "/usr/lib/python2.7/dist-packages/schedule/__init__.py", line 96, in _run_job
+    ret = job.run()
+  File "/usr/lib/python2.7/dist-packages/schedule/__init__.py", line 293, in run
+    ret = self.job_func()
+  File "productor-4.py", line 47, in job_send_data
+    p.produce(topic=topic, key=record_key, value=record_value, on_delivery=acked)
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/confluent_kafka/avro/__init__.py", line 99, in produce
+    value = self._serializer.encode_record_with_schema(topic, value_schema, value)
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/confluent_kafka/avro/serializer/message_serializer.py", line 108, in encode_record_with_schema
+    schema_id = self.registry_client.register(subject, schema)
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/confluent_kafka/avro/cached_schema_registry_client.py", line 221, in register
+    raise ClientError("Incompatible Avro schema:" + str(code))
+confluent_kafka.avro.error.ClientError: Incompatible Avro schema:409

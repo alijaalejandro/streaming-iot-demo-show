@@ -1,0 +1,44 @@
+Producing record: galeo-dev-iot-events	{"machineid": "15AB45CE", "machine_status": "normal", "machine_critical_stop": "no_check"}
+
+0 messages were produced to topic galeo-dev-iot-events!
+
+Producing record: galeo-dev-iot-events	{"machineid": "15AB45CE", "machine_status": "normal", "machine_critical_stop": "no_check"}
+
+Produced record to topic galeo-dev-iot-events partition [0] @ offset 4
+Produced record to topic galeo-dev-iot-events partition [0] @ offset 5
+0 messages were produced to topic galeo-dev-iot-events!
+
+Producing record: galeo-dev-iot-events	{"machineid": "15AB45CE", "machine_status": "normal", "machine_critical_stop": "no_check"}
+
+Produced record to topic galeo-dev-iot-events partition [0] @ offset 6
+0 messages were produced to topic galeo-dev-iot-events!
+
+Producing record: galeo-dev-iot-events	{"machineid": "15AB45CE", "machine_status": "normal", "machine_critical_stop": "no_check"}
+
+Produced record to topic galeo-dev-iot-events partition [0] @ offset 7
+0 messages were produced to topic galeo-dev-iot-events!
+
+Producing record: galeo-dev-iot-events	{"machineid": "15AB45CE", "machine_status": "normal", "machine_critical_stop": "no_check"}
+
+Produced record to topic galeo-dev-iot-events partition [0] @ offset 8
+0 messages were produced to topic galeo-dev-iot-events!
+
+Producing record: galeo-dev-iot-events	{"machineid": "15AB45CE", "machine_status": "normal", "machine_critical_stop": "no_check"}
+
+Produced record to topic galeo-dev-iot-events partition [0] @ offset 11
+0 messages were produced to topic galeo-dev-iot-events!
+
+Producing record: galeo-dev-iot-events	{"machineid": "15AB45CE", "machine_status": "normal", "machine_critical_stop": "no_check"}
+
+Produced record to topic galeo-dev-iot-events partition [0] @ offset 13
+0 messages were produced to topic galeo-dev-iot-events!
+
+Producing record: galeo-dev-iot-events	{"machineid": "15AB45CE", "machine_status": "normal", "machine_critical_stop": "no_check"}
+
+Produced record to topic galeo-dev-iot-events partition [0] @ offset 14
+0 messages were produced to topic galeo-dev-iot-events!
+
+Traceback (most recent call last):
+  File "productor-3.py", line 82, in <module>
+    time.sleep(1)
+KeyboardInterrupt

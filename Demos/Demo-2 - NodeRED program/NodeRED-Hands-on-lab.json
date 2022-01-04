@@ -1,0 +1,660 @@
+[
+    {
+        "id": "35ddae4a.bf7672",
+        "type": "tab",
+        "label": "Session 5 Demo MQTT",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "769a7323.9ee83c",
+        "type": "mqtt in",
+        "z": "35ddae4a.bf7672",
+        "name": "",
+        "topic": "telemetry",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "d2cd6f8b.2fe5",
+        "x": 91.75,
+        "y": 284.00001430511475,
+        "wires": [
+            [
+                "2ba3ff20.bdbf"
+            ]
+        ]
+    },
+    {
+        "id": "2ba3ff20.bdbf",
+        "type": "json",
+        "z": "35ddae4a.bf7672",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 238.88892030715942,
+        "y": 284.02780055999756,
+        "wires": [
+            [
+                "cf770724.cdd408",
+                "f9cc6dcf.7f332",
+                "f1786f4b.2b844",
+                "2cc3215.ed9dade",
+                "802e1d4.82507e"
+            ]
+        ]
+    },
+    {
+        "id": "cf770724.cdd408",
+        "type": "change",
+        "z": "35ddae4a.bf7672",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.temperature_inside",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 485.9722366333008,
+        "y": 243.0555715560913,
+        "wires": [
+            [
+                "270b6853.239e28",
+                "6e54893c.5306e8",
+                "d844aaf9.e81b08"
+            ]
+        ]
+    },
+    {
+        "id": "fda3e632.f134b8",
+        "type": "debug",
+        "z": "35ddae4a.bf7672",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 270,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "f9cc6dcf.7f332",
+        "type": "change",
+        "z": "35ddae4a.bf7672",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.humidity_inside",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 475,
+        "y": 290.0000123977661,
+        "wires": [
+            [
+                "5229250e.0dcbfc",
+                "fb229b2f.790a08"
+            ]
+        ]
+    },
+    {
+        "id": "f1786f4b.2b844",
+        "type": "change",
+        "z": "35ddae4a.bf7672",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.wind_speed",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 466.25,
+        "y": 343.7500123977661,
+        "wires": [
+            [
+                "b34a4b8d.1d2e58",
+                "b197d44a.1181d8"
+            ]
+        ]
+    },
+    {
+        "id": "2cc3215.ed9dade",
+        "type": "change",
+        "z": "35ddae4a.bf7672",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.pressure",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 401.2500123977661,
+        "wires": [
+            [
+                "ad3a5699.0556a8",
+                "4d618e10.5c66a"
+            ]
+        ]
+    },
+    {
+        "id": "802e1d4.82507e",
+        "type": "change",
+        "z": "35ddae4a.bf7672",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.wind_degree",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 471.25,
+        "y": 445,
+        "wires": [
+            [
+                "aca636a0.f37ed8"
+            ]
+        ]
+    },
+    {
+        "id": "d844aaf9.e81b08",
+        "type": "switch",
+        "z": "35ddae4a.bf7672",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "30",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "30",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 814.3750114440918,
+        "y": 167.500018119812,
+        "wires": [
+            [
+                "220af389.08a05c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "220af389.08a05c",
+        "type": "function",
+        "z": "35ddae4a.bf7672",
+        "name": "",
+        "func": "msg.payload = {\n    chatId : 617231136,\n    type : \"message\",\n    content : \"Temperature Alert\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 960,
+        "y": 160,
+        "wires": [
+            [
+                "3e5b7fdc.fc5e4"
+            ]
+        ]
+    },
+    {
+        "id": "3e5b7fdc.fc5e4",
+        "type": "telegram sender",
+        "z": "35ddae4a.bf7672",
+        "name": "",
+        "bot": "7ad5e7ad.fed0a8",
+        "haserroroutput": true,
+        "outputs": 2,
+        "x": 1140,
+        "y": 160,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "270b6853.239e28",
+        "type": "ui_gauge",
+        "z": "35ddae4a.bf7672",
+        "name": "Temperature",
+        "group": "c0386db3.c99f3",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Temperature Indoor",
+        "label": "ºC",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "45",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 826.8750152587891,
+        "y": 116.25001907348633,
+        "wires": []
+    },
+    {
+        "id": "5229250e.0dcbfc",
+        "type": "ui_gauge",
+        "z": "35ddae4a.bf7672",
+        "name": "Rel Humidity",
+        "group": "c0386db3.c99f3",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Rel. Humidity Indoor",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 830,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b34a4b8d.1d2e58",
+        "type": "ui_gauge",
+        "z": "35ddae4a.bf7672",
+        "name": "Wind Speed",
+        "group": "c0386db3.c99f3",
+        "order": 3,
+        "width": "6",
+        "height": "4",
+        "gtype": "donut",
+        "title": "Wind Speed",
+        "label": "m/s",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 826.2500114440918,
+        "y": 416.2500057220459,
+        "wires": []
+    },
+    {
+        "id": "ad3a5699.0556a8",
+        "type": "ui_gauge",
+        "z": "35ddae4a.bf7672",
+        "name": "Pressure",
+        "group": "c0386db3.c99f3",
+        "order": 3,
+        "width": "6",
+        "height": "4",
+        "gtype": "wave",
+        "title": "Pressure",
+        "label": "mbar",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "3000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 821.2500114440918,
+        "y": 535.0000076293945,
+        "wires": []
+    },
+    {
+        "id": "aca636a0.f37ed8",
+        "type": "ui_gauge",
+        "z": "35ddae4a.bf7672",
+        "name": "Wind Direction",
+        "group": "c0386db3.c99f3",
+        "order": 4,
+        "width": "6",
+        "height": "4",
+        "gtype": "compass",
+        "title": "Wind Direction",
+        "label": "deg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "360",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 838.7500114440918,
+        "y": 666.2500047683716,
+        "wires": []
+    },
+    {
+        "id": "6e54893c.5306e8",
+        "type": "ui_chart",
+        "z": "35ddae4a.bf7672",
+        "name": "Temperature Indoor",
+        "group": "213f572d.bb6de8",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "label": "Temperature Indoor",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Temperature Indoor",
+        "dot": false,
+        "ymin": "15",
+        "ymax": "50",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 849.3750114440918,
+        "y": 73.75001811981201,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fb229b2f.790a08",
+        "type": "ui_chart",
+        "z": "35ddae4a.bf7672",
+        "name": "Rel. Humidity",
+        "group": "213f572d.bb6de8",
+        "order": 4,
+        "width": "6",
+        "height": "4",
+        "label": "Rel. Humidity",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Rel. Humidity",
+        "dot": false,
+        "ymin": "10",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 840,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b197d44a.1181d8",
+        "type": "ui_chart",
+        "z": "35ddae4a.bf7672",
+        "name": "Wind Speed",
+        "group": "213f572d.bb6de8",
+        "order": 4,
+        "width": "6",
+        "height": "4",
+        "label": "Wind Speed",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Wind Speed",
+        "dot": false,
+        "ymin": "5",
+        "ymax": "30",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 826.25,
+        "y": 463.75,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4d618e10.5c66a",
+        "type": "ui_chart",
+        "z": "35ddae4a.bf7672",
+        "name": "Pressure",
+        "group": "213f572d.bb6de8",
+        "order": 4,
+        "width": "6",
+        "height": "4",
+        "label": "Pressure",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Pressure",
+        "dot": false,
+        "ymin": "500",
+        "ymax": "1800",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 823.75,
+        "y": 587.5,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f38ddd82.bebda",
+        "type": "ui_ui_control",
+        "z": "35ddae4a.bf7672",
+        "name": "",
+        "events": "all",
+        "x": 100,
+        "y": 580,
+        "wires": [
+            [
+                "fda3e632.f134b8"
+            ]
+        ]
+    },
+    {
+        "id": "d2cd6f8b.2fe5",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "AWS MQTT Broker",
+        "broker": "3.17.135.146",
+        "port": "1883",
+        "clientid": "NodeREDAWS",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "7ad5e7ad.fed0a8",
+        "type": "telegram bot",
+        "z": "",
+        "botname": "fourIRnodebot",
+        "usernames": "agallende, alijaalejandro",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "c0386db3.c99f3",
+        "type": "ui_group",
+        "z": "",
+        "name": "Dashboards",
+        "tab": "36988d9a.ae13a2",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": true
+    },
+    {
+        "id": "213f572d.bb6de8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Charts",
+        "tab": "36988d9a.ae13a2",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": true
+    },
+    {
+        "id": "36988d9a.ae13a2",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+  <DUT Name="Inverter_SUN2000" Id="{2d0da36f-a759-4e9f-8ece-9bb4dc47878a}">
+    <Declaration><![CDATA[TYPE Inverter_SUN2000 :
+STRUCT
+	IDSlave		: BYTE:= 255;
+	TCPPort		: UINT:= 500;
+	
+	//--------------- LECTURA ALARMAS ---------------
+	uiAddress_Alarm 		: ARRAY [1..11] OF UINT:= [50000, 50001, 50002, 50003, 50004, 50005, 50006, 50007, 50008, 50009, 50016];
+	uiRaw_Alarm 			: ARRAY [1..11] OF UINT;
+	
+	// 50000
+	Software_Ver_Unmatch_1	:	BOOL;
+	Upgrade_Failed_1		:	BOOL;
+	Flash_Fault_1			:	BOOL;
+	// 50001
+	Software_Ver_Unmatch_2	:	BOOL;
+	Software_Ver_Unmatch_3	:	BOOL;
+	System_Fault_1			:	BOOL;
+	System_Fault_27			:	BOOL;
+	Abnormal_Inv_Circuit_20	:	BOOL;
+	Abnormal_Resid_Cur_1	:	BOOL;
+	Cabinet_Overtemp_1		:	BOOL;
+	System_Fault_28			:	BOOL;
+	Fan_Fault_1				:	BOOL;
+	Abnormal_SPI_Comm_1		:	BOOL;
+	System_Fault_29			:	BOOL;
+	//50002
+	Low_Insulation_Res_1	:	BOOL;
+	AFCI_Self_test_Fault_1	:	BOOL;
+	DC_Arc_Fault_1			:	BOOL;
+	AFCI_Self_test_Fault_2	:	BOOL;
+	AFCI_Self_test_Fault_3	:	BOOL;
+	System_Fault_30			:	BOOL;
+	System_Fault_31			:	BOOL;
+	String_3_Reversed_1		:	BOOL;
+	DC_Arc_Fault_2			:	BOOL;
+	DC_Arc_Fault_3			:	BOOL;
+	DC_Arc_Fault_4			:	BOOL;
+	System_Fault_23			:	BOOL;
+	// 50003
+	String_1_Reversed_1		:	BOOL;
+	String_2_Reversed_1		:	BOOL;
+	Abnormal_DC_Circuit_12	:	BOOL;
+	String_4_Reversed_1		:	BOOL;
+	String_5_Reversed_1		:	BOOL;
+	String_6_Reversed_1		:	BOOL;
+	High_DC_Input_Volt_1	:	BOOL;
+	High_DC_Input_Volt_2	:	BOOL;
+	High_DC_Input_Volt_3	:	BOOL;
+	High_DC_Input_Volt_4	:	BOOL;
+	Abnormal_DC_Circuit_15	:	BOOL;
+	// 50004
+	String_1_Reversed_2		:	BOOL;
+	String_2_Reversed_2		:	BOOL;
+	String_7_Reversed_1		:	BOOL;
+	String_7_Reversed_2		:	BOOL;
+	String_8_Reversed_1		:	BOOL;
+	String_8_Reversed_2		:	BOOL;
+	String_3_Reversed_2		:	BOOL;
+	String_4_Reversed_2		:	BOOL;
+	String_5_Reversed_2		:	BOOL;
+	String_6_Reversed_2		:	BOOL;
+	// 50005
+	Abnormal_DC_Circuit_3	:	BOOL;
+	Abnormal_Auxiliary_power_4	:	BOOL;
+	Abnormal_DC_Circuit_10	:	BOOL;
+	Abnormal_DC_Circuit_11	:	BOOL;
+	Abnormal_DC_Circuit_30	:	BOOL;
+	// 50006
+	System_Fault_3			:	BOOL;
+	Abnormal_Inv_Circuit_13	:	BOOL;
+	Abnormal_Inv_Circuit_14	:	BOOL;
+	// 50007
+	Abnormal_Inv_Circuit_16	:	BOOL;
+	System_Fault_21			:	BOOL;
+	// 50008
+	Abnormal_Grid_Volt_4	:	BOOL;
+	Abnormal_Grid_Volt_16	:	BOOL;
+	Frequency_Abnormal_2	:	BOOL;
+	Frequency_Abnormal_4	:	BOOL;
+	Abnormal_Grid_Volt_28	:	BOOL;
+	Abnormal_Grid_Volt_29	:	BOOL;
+	Abnormal_Ground_1		:	BOOL;
+	Abnormal_Grid_Volt_26	:	BOOL;
+	Frequency_Abnormal_5	:	BOOL;
+	// 50009
+	Abnormal_Grid_Volt_31	:	BOOL;
+	Abnormal_Grid_Volt_32	:	BOOL;
+	Abnormal_Grid_Volt_33	:	BOOL;
+	Abnormal_Grid_Volt_19	:	BOOL;
+	// 50016
+	Abnormal_String_1_1		:	BOOL;
+	Abnormal_String_2_1		:	BOOL;
+	Abnormal_String_3_1		:	BOOL;
+	Abnormal_String_4_1		:	BOOL;
+	Abnormal_String_5_1		:	BOOL;
+	Abnormal_String_6_1		:	BOOL;
+	Abnormal_String_7_1		:	BOOL;
+	Abnormal_String_8_1		:	BOOL;
+	
+	//--------------- LECTURA MEDIDAS ---------------
+	//Falta por determinar que variables queremos medir.
+	uiAddress_Signal 		: ARRAY [1..137] OF UINT:= [32001,32002,32003,32200,32262,32263,32264,32265,32266,32267,32268,32269,32270,32271,32272,32273,32274,32275,32276,32277,
+														32278,32279,32280,32281,32282,32283,32284,32285,32286,32287,32288,32290,32292,32294,32296,32298,32300,32302,32304,32306,
+														32314,32315,32316,32317,32320,32321,32321,32321,32322,32323,32325,32327,32343,32345,32347,32349,32351,32353,32355,32357,
+														33022,33024,33026,33070,40000,40117,40118,40119,40120,40121,40122,40123,40124,40125,40133,40154,40200,40201,40232,40234,
+														40235,40236,40237,42045,42047,42049,42051,42053,42055,42057,42059,42061,42063,42064,42065,42066,42067,42068,42069,42070,
+														42071,42072,42074,42075,42083,42084,42085,42086,42087,42089,42090,42091,42092,42093,42094,42095,42096,42097,42101,42151,
+														42152,42154,42155,42157,42158,42160,42161,42174,42300,42301,42302,42303,42304,42305,42320,42321,42333];
+	uiRaw_Signal			: ARRAY [1..137] OF UINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

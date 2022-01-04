@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+  <POU Name="FB_ModbusMaster_Inverter" Id="{4b1f4e9c-1b01-4241-bb4e-19d6465dadcb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ModbusMaster_Inverter
+VAR_INPUT
+	bEnable			: BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	fbModbusRtuMasterV2: ModbusRtuMasterV2_KL6x22B;
+	bAddrCount		: BYTE:= 1;
+	
+	Data_Inverter_SUN2000	: Inverter_SUN2000;
+	iPaso: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE iPaso OF
+0:	//Inicio
+	IF bEnable THEN
+		iPaso := 1;
+	END_IF
+
+1: //Lectura de alarmas
+	fbModbusRtuMasterV2.ReadInputRegs(
+		UnitID:= Data_Inverter_SUN2000.IDSlave,
+		Quantity:= 1,
+		MBAddr:= Data_Inverter_SUN2000.uiAddress_Alarm[bAddrCount],
+		cbLength:= SIZEOF(Data_Inverter_SUN2000.uiRaw_Alarm[bAddrCount]),
+		pMemoryAddr:= ADR(Data_Inverter_SUN2000.uiRaw_Alarm[bAddrCount]), 
+		Timeout:= T#1S,
+		//AuxQuantity:= , //solo para funcion modbus 23
+		//AuxMBAddr:= , 	//solo para funcion modbus 23
+		//AuxcbLength:= , //solo para funcion modbus 23
+		//pAuxMemoryAddr:= , //solo para funcion modbus 23
+		Execute:= TRUE);
+		
+	IF NOT fbModbusRtuMasterV2.BUSY THEN
+		bAddrCount := bAddrCount+1;
+		IF bAddrCount > 11 THEN
+			bAddrCount := 1;
+			iPaso := 3;	
+		END_IF
+	END_IF
+	
+3: //Lectura de medidas
+	fbModbusRtuMasterV2.ReadInputRegs(
+		UnitID:= Data_Inverter_SUN2000.IDSlave,
+		Quantity:= 1,
+		MBAddr:= Data_Inverter_SUN2000.uiAddress_Signal[bAddrCount],
+		cbLength:= SIZEOF(Data_Inverter_SUN2000.uiRaw_Signal[bAddrCount]),
+		pMemoryAddr:= ADR(Data_Inverter_SUN2000.uiRaw_Signal[bAddrCount]), 
+		Timeout:= T#1S,
+		//AuxQuantity:= , //solo para funcion modbus 23
+		//AuxMBAddr:= , 	//solo para funcion modbus 23
+		//AuxcbLength:= , //solo para funcion modbus 23
+		//pAuxMemoryAddr:= , //solo para funcion modbus 23
+		Execute:= TRUE);
+		
+	IF NOT fbModbusRtuMasterV2.BUSY THEN
+		bAddrCount := bAddrCount+1;
+		IF bAddrCount > 11 THEN
+			bAddrCount := 1;
+			iPaso := 4;	
+		END_IF
+	END_IF
+	
+4: //Escalado de variables de alarma
+	Data_Inverter_SUN2000.Software_Ver_Unmatch_1	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[1] AND 16#0A);
+	Data_Inverter_SUN2000.Upgrade_Failed_1			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[1] AND 16#0B);
+	Data_Inverter_SUN2000.Flash_Fault_1				:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[1] AND 16#0C);
+	
+	Data_Inverter_SUN2000.Software_Ver_Unmatch_2	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[2] AND 16#01);
+	Data_Inverter_SUN2000.Software_Ver_Unmatch_3	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[2] AND 16#02);
+	Data_Inverter_SUN2000.System_Fault_1			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[2] AND 16#03);
+	Data_Inverter_SUN2000.System_Fault_27			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[2] AND 16#04);
+	Data_Inverter_SUN2000.Abnormal_Inv_Circuit_20	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[2] AND 16#06);
+	Data_Inverter_SUN2000.Abnormal_Resid_Cur_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[2] AND 16#07);
+	Data_Inverter_SUN2000.Cabinet_Overtemp_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[2] AND 16#08);
+	Data_Inverter_SUN2000.System_Fault_28			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[2] AND 16#0A);
+	Data_Inverter_SUN2000.Fan_Fault_1				:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[2] AND 16#0B);
+	Data_Inverter_SUN2000.Abnormal_SPI_Comm_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[2] AND 16#0C);
+	Data_Inverter_SUN2000.System_Fault_29			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[2] AND 16#0E);
+	
+	Data_Inverter_SUN2000.Low_Insulation_Res_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[3] AND 16#00);
+	Data_Inverter_SUN2000.AFCI_Self_test_Fault_1	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[3] AND 16#01);
+	Data_Inverter_SUN2000.DC_Arc_Fault_1			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[3] AND 16#02);
+	Data_Inverter_SUN2000.AFCI_Self_test_Fault_2	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[3] AND 16#03);
+	Data_Inverter_SUN2000.AFCI_Self_test_Fault_3	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[3] AND 16#04);
+	Data_Inverter_SUN2000.System_Fault_30			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[3] AND 16#07);
+	Data_Inverter_SUN2000.System_Fault_31			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[3] AND 16#08);
+	Data_Inverter_SUN2000.String_3_Reversed_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[3] AND 16#09);
+	Data_Inverter_SUN2000.DC_Arc_Fault_2			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[3] AND 16#0C);
+	Data_Inverter_SUN2000.DC_Arc_Fault_3			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[3] AND 16#0D);
+	Data_Inverter_SUN2000.DC_Arc_Fault_4			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[3] AND 16#0E);
+	Data_Inverter_SUN2000.System_Fault_23			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[3] AND 16#0F);
+	
+	Data_Inverter_SUN2000.String_1_Reversed_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[4] AND 16#01);
+	Data_Inverter_SUN2000.String_2_Reversed_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[4] AND 16#02);
+	Data_Inverter_SUN2000.Abnormal_DC_Circuit_12	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[4] AND 16#03);
+	Data_Inverter_SUN2000.String_4_Reversed_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[4] AND 16#06);
+	Data_Inverter_SUN2000.String_5_Reversed_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[4] AND 16#07);
+	Data_Inverter_SUN2000.String_6_Reversed_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[4] AND 16#08);
+	Data_Inverter_SUN2000.High_DC_Input_Volt_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[4] AND 16#09);
+	Data_Inverter_SUN2000.High_DC_Input_Volt_2		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[4] AND 16#0A);
+	Data_Inverter_SUN2000.High_DC_Input_Volt_3		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[4] AND 16#0B);
+	Data_Inverter_SUN2000.High_DC_Input_Volt_4		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[4] AND 16#0C);
+	Data_Inverter_SUN2000.Abnormal_DC_Circuit_15	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[4] AND 16#0F);
+	
+	Data_Inverter_SUN2000.String_1_Reversed_2		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[5] AND 16#02);
+	Data_Inverter_SUN2000.String_2_Reversed_2		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[5] AND 16#03);
+	Data_Inverter_SUN2000.String_7_Reversed_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[5] AND 16#04);
+	Data_Inverter_SUN2000.String_7_Reversed_2		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[5] AND 16#05);
+	Data_Inverter_SUN2000.String_8_Reversed_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[5] AND 16#06);
+	Data_Inverter_SUN2000.String_8_Reversed_2		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[5] AND 16#07);
+	Data_Inverter_SUN2000.String_3_Reversed_2		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[5] AND 16#0C);
+	Data_Inverter_SUN2000.String_4_Reversed_2		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[5] AND 16#0D);
+	Data_Inverter_SUN2000.String_5_Reversed_2		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[5] AND 16#0E);
+	Data_Inverter_SUN2000.String_6_Reversed_2		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[5] AND 16#0F);
+	
+	Data_Inverter_SUN2000.Abnormal_DC_Circuit_3		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[6] AND 16#01);
+	Data_Inverter_SUN2000.Abnormal_Auxiliary_power_4	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[6] AND 16#02);
+	Data_Inverter_SUN2000.Abnormal_DC_Circuit_10	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[6] AND 16#04);
+	Data_Inverter_SUN2000.Abnormal_DC_Circuit_11	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[6] AND 16#05);
+	Data_Inverter_SUN2000.Abnormal_DC_Circuit_30	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[6] AND 16#06);
+	
+	Data_Inverter_SUN2000.System_Fault_3			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[7] AND 16#06);
+	Data_Inverter_SUN2000.Abnormal_Inv_Circuit_13	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[7] AND 16#0A);
+	Data_Inverter_SUN2000.Abnormal_Inv_Circuit_14	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[7] AND 16#0C);
+	
+	Data_Inverter_SUN2000.Abnormal_Inv_Circuit_16	:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[8] AND 16#01);
+	Data_Inverter_SUN2000.System_Fault_21			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[8] AND 16#05);
+	
+	Data_Inverter_SUN2000.Abnormal_Grid_Volt_4		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[9] AND 16#00);
+	Data_Inverter_SUN2000.Abnormal_Grid_Volt_16		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[9] AND 16#03);
+	Data_Inverter_SUN2000.Frequency_Abnormal_2		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[9] AND 16#06);
+	Data_Inverter_SUN2000.Frequency_Abnormal_4		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[9] AND 16#07);
+	Data_Inverter_SUN2000.Abnormal_Grid_Volt_28		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[9] AND 16#08);
+	Data_Inverter_SUN2000.Abnormal_Grid_Volt_29		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[9] AND 16#09);
+	Data_Inverter_SUN2000.Abnormal_Ground_1			:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[9] AND 16#0A);
+	Data_Inverter_SUN2000.Abnormal_Grid_Volt_26		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[9] AND 16#0B);
+	Data_Inverter_SUN2000.Frequency_Abnormal_5		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[9] AND 16#0C);
+	
+	Data_Inverter_SUN2000.Abnormal_Grid_Volt_31		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[10] AND 16#00);
+	Data_Inverter_SUN2000.Abnormal_Grid_Volt_32		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[10] AND 16#01);
+	Data_Inverter_SUN2000.Abnormal_Grid_Volt_33		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[10] AND 16#02);
+	Data_Inverter_SUN2000.Abnormal_Grid_Volt_19		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[10] AND 16#08);
+	
+	Data_Inverter_SUN2000.Abnormal_String_1_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[11] AND 16#00);
+	Data_Inverter_SUN2000.Abnormal_String_2_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[11] AND 16#01);
+	Data_Inverter_SUN2000.Abnormal_String_3_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[11] AND 16#02);
+	Data_Inverter_SUN2000.Abnormal_String_4_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[11] AND 16#03);
+	Data_Inverter_SUN2000.Abnormal_String_5_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[11] AND 16#04);
+	Data_Inverter_SUN2000.Abnormal_String_6_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[11] AND 16#05);
+	Data_Inverter_SUN2000.Abnormal_String_7_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[11] AND 16#06);
+	Data_Inverter_SUN2000.Abnormal_String_8_1		:= UINT_TO_BOOL(Data_Inverter_SUN2000.uiRaw_Alarm[11] AND 16#07);	
+
+	iPaso := 5;
+	
+5: //Escalado de variables de medida
+
+	iPaso := 0;
+	
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="FB_ModbusMaster_Inverter">
+      <LineId Id="11" Count="1" />
+      <LineId Id="14" Count="4" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="109" Count="3" />
+      <LineId Id="128" Count="5" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="134" Count="0" />
+      <LineId Id="152" Count="3" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="41" Count="1" />
+      <LineId Id="156" Count="18" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="175" Count="1" />
+      <LineId Id="201" Count="86" />
+      <LineId Id="199" Count="1" />
+      <LineId Id="177" Count="0" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="182" Count="0" />
+      <LineId Id="184" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
