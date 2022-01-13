@@ -22,11 +22,11 @@ By using the remote webcam, we can now check what is in place. Just open the Xia
 1. MQTT sender and data collection is at the RPI locally at the office.
 	Access to the supervisor and check the MQTT sender is up&running
 	- To access the supervisor just type this [url](http://agallende.ddns.net:9001/) at the web browser. Enter user & password and get the service running.
-	- user and password: ```galeo | G@le0Tech```
+	- To get acess data look at the [credentials folder](/Credentials)
 
 	![Image of Supervisor](/images/supervisor.png)
 
-```
+<!--
 2. [DEPRECATED] Connect to the AWS VM. ```ssh -i "GaleoIoTKeys.pem" ubuntu@ec2-3-140-184-237.us-east-2.compute.amazonaws.com```
 	- The RPI should send the data over MQTT to an MQTT broker installed into the AWS VM. Please chek the _mosquitto_ process is running at the VM by executing top.
 	- Please check the following parameters before proceed ahead
@@ -34,18 +34,17 @@ By using the remote webcam, we can now check what is in place. Just open the Xia
 		- MQTT standard port is open for allowing traffic (enable a 1883 TCP/IP port general rule at the security config of the. VM)
 		- Get the configured broker user and password (```galeo``` ```Hq93*alrEYD98oPT```)
 		- Check the broker is running and you are able to connect by using MQTT-Explorer or any other MQTT client.
-```
+-->
 
 2. In order to get the data from the sensors we are going to use a public cloud MQTT broker hosted by [HiveMQ](https://www.hivemq.com/mqtt-cloud-broker/).
 	- HiveMQ has a free MQTT broker cluster available on the web as a complete managed service. 
-	- Our broker is listening at this ```1a72e178acf1458a8a6814ac97606398.s2.eu.hivemq.cloud | PORT 8883 (TLS)``` Encryption ready.
-	- Here are the details of our cluster
-	![HiveMQ Cluster Details](/images/hivemq1.png)
-	- Credentials to publish and subscribe are:
-	```galeoiot-dev & 3J2Dj3p7kHDz```
+	- Our broker is listening at this ```1a72e178acf1458a8a6814ac97606398.s2.eu.hivemq.cloud | PORT 8883 (TLS)```
+	- Credentials to publish and subscribe are at the [credentials folder](/Credentials)
 	- Check the broker is running and you are able to connect by using MQTT-Explorer or any other MQTT client.
 	- Please note that free cluster doesn't have any monitoring console.
+	
 
+	![HiveMQ Cluster Details](/images/hivemq1.png)
 
 3. Get your favorite MQTT client (client or OS native) and configure your broker
 	- In this example, we are going to use [MQTT Explorer](http://mqtt-explorer.com/) _Thanks to Thomas Nordquist thomasnordquist_
@@ -54,6 +53,7 @@ By using the remote webcam, we can now check what is in place. Just open the Xia
 		- Broker url or in our case IP
 		- Broker port (default 1883)
 		- Broker user & password
+	- Again get the credentials [here](/Credentials)
 
 ![Image of MQTT config](/images/mqttexplorerconfig.png)
 
