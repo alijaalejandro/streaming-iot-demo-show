@@ -1,0 +1,9 @@
+// Raspberrypi program supervisor connection
+// Just copy this into your browser  http://gallende.ddns.net:9001
+{
+	"ip":"gallende.ddns.net",
+	"protocol":"http://",
+	"port":"9001",
+	"user":"galeo",
+	"passwd":"G@le0Tech"
+}
