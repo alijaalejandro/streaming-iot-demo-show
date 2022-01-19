@@ -2,15 +2,15 @@
 
 # Demo 2 Intro
 
-In this demo we are going to use NodeRED as a code-less automation framework. In the first demo we retrieved the sensors' readinngs from the MQTT topic. With a MQTT client we were able to visualize the data trends and data changes but not too much. A MQTT client is designed to inspect the data but no actuate or program actions. Of course, we have always the possiblity to program our own mqtt client and then, adding more functionalities by code. But, to do this we need advanced programming skills. 
+In this demo we are going to use NodeRED as a code-less automation framework. In the first demo we retrieved the sensors' readings from the MQTT topic. With a MQTT client we were able to visualize the data trends and data changes but not too much. A MQTT client is designed to inspect the data but no actuate or program actions. Of course, we have always the possibility to program our own MQTT client and then, adding more functionalities by code. But, to do this we need advanced programming skills. 
 
 # Prerequisites
 
-1. __An MQTT broker__ up and getting messages. Please, see the [demo1](https://bitbucket.org/galeoteam/streaming-iot-demo-show/src/master/Demos/Demo-1-%20MQTT%20and%20IoT%20Setup/) to check-out the set-up. To have a quick idea if the MQTT broker is up&running execute ```top``` and look for the _mosquitto_ process.
+1. __An MQTT broker__ up and getting messages. Please, see the [demo1](/Demos/Demo_1_MQTT_and_IoT_Setup) to check-out the set-up. To have a quick idea if the MQTT broker is up&running execute look for data at the MQTTExplorer tool.
 
-2. __A node-red installed__ in the VM. Just execute ```node-red start```or  ```nohup node-red start &``` and see if the node-red programm starts. If so, just open ```http://VM-public-IP:1880``` in your local browser. Please, have in mind that 1880 port muct be enable for traffic at the VM security control menu in the AWS console.
+2. __A node-red installed__ in the VM. If so, just open ```http://ec2-3-143-168-228.us-east-2.compute.amazonaws.com:1880``` in your local browser. Please, have in mind that 1880 port must be enable for traffic at the VM security control menu in the AWS console.
 
-3. __The node-red__ automation program for this demo. NodeRED-Hands-on-lab.json located here at this repo. This node-red flow uses the following packages inside node-red. Plese, have in mind if you start from a fresh node-red installation you must install the following packages at the palette menu before to _Deploy_ the program.
+3. __The node-red__ automation program for this demo. Create an empty new flow and import the sample program ```Node-red-sample-program.json``` located [here](Demos/Demo_2_NodeRED_program) at this repository. This node-red flow uses the following packages inside node-red. Please, have in mind if you start from a fresh node-red installation you must install the following packages at the palette menu before to _Deploy_ the program.
 
 - node-red-contrib-telegrambot
 - node-red-dashboard
@@ -20,16 +20,11 @@ Let's do this step-by-step
 
 0. Check the set up.
 
-Just entering the NodeRED web interface. First, we have installed a NodeRED service in our VM at AWS where the MQTT broker is running too.
-
- ![Image Webcam](/images/AWSVM.png)
- ![Image Webcam](/images/keys.png)
-
- 1. __Node-RED__ programm. Import the node-red programm and configure the MQTT node to the corresponding broker parameters. Observe the built-in NodeRED program and listen the explanation.
+ 1. __Node-RED__ program. Import the node-red program and configure the MQTT node to the corresponding broker parameters. Observe the built-in NodeRED program and listen the explanation.
 
  ![Image Webcam](/images/nodered-programm.png)
  
- 2. __Node-RED Dashboard__ .Open the dashboard and observe the behaviour.
+ 2. __Node-RED Dashboard__ .Open the dashboard and observe the behavior.
 
  ![Image Webcam](/images/nodered-dashboard.png)
 
@@ -46,4 +41,8 @@ Just entering the NodeRED web interface. First, we have installed a NodeRED serv
 
  ![Image Webcam](/images/telegrambot.png)
 
- 4. It's time to play. It's your time :)
+ 4. Observe the next functionalities like create a notification dashboard or change the sampling dynamically by publishing a the sampling in seconds (1,5,10,...) in the ```cmnd/sampling``` topic.
+
+ ![Dashboard notification and sampling](/images/notifications_sampling.png)
+
+ 5. It's time to play. It's your time :)
