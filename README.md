@@ -10,8 +10,8 @@ The repo includes some assets and tools as brick piezes to show some demo use ca
 
 - A demo [demo3](/Demos/Demo_3_MQTT_Confluent_PowerBI) where, starting from [demo2](/Demos/Demo_2_NodeRED_program), once we have the data at the MQTT broker, we can programm a kafka producer and inyect that reading to a Confluent Cloud cluster. From here, we can play a bit with Confluent KQL streaming calculations.
 
-- A demo where [demo3](/Demos/Demo_3_MQTT_Confluent_PowerBI)), starting form Confluent topics, we can programm a simple kafka consumer to get the data and send it to the real-time visualizer in Power BI.  
-
+<!--- A demo where [demo3](/Demos/Demo_3_MQTT_Confluent_PowerBI)), starting form Confluent topics, we can programm a simple kafka consumer to get the data and send it to the real-time visualizer in Power BI.  
+-->
 
 ![Architecture](/images/IoT_Hands-on-lab.jpg)
 
