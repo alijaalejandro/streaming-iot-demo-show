@@ -21,7 +21,7 @@ By using the remote webcam, we can now check what is in place. Just open the Xia
 
 1. MQTT sender and data collection is at the RPI locally at the office.
 	Access to the supervisor and check the MQTT sender is up&running
-	- To access the supervisor just type this [url](http://agallende.ddns.net:9001/) at the web browser. Enter user & password and get the service running.
+	- To access the supervisor just type this [url](http://galeoiot.ddns.net:9001/) at the web browser. Enter user & password and get the service running.
 	- To get acess data look at the [credentials folder](/Credentials)
 
 	![Image of Supervisor](/images/supervisor.png)
