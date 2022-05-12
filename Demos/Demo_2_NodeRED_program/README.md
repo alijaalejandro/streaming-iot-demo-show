@@ -8,7 +8,7 @@ In this demo we are going to use NodeRED as a code-less automation framework. In
 
 1. __An MQTT broker__ up and getting messages. Please, see the [demo1](/Demos/Demo_1_MQTT_and_IoT_Setup) to check-out the set-up. To have a quick idea if the MQTT broker is up&running execute look for data at the MQTTExplorer tool.
 
-2. __A node-red installed__ in the VM. If so, just open ```http://ec2-3-143-168-228.us-east-2.compute.amazonaws.com:1880``` in your local browser. Please, have in mind that 1880 port must be enable for traffic at the VM security control menu in the AWS console.
+2. __A node-red installed__ in the VM. If so, just open ```http://ec2-54-173-46-11.compute-1.amazonaws.com:1880``` in your local browser. Please, have in mind that 1880 port must be enable for traffic at the VM security control menu in the AWS console.
 
 3. __The node-red__ automation program for this demo. Create an empty new flow and import the sample program ```Node-red-sample-program.json``` located [here](Demos/Demo_2_NodeRED_program) at this repository. This node-red flow uses the following packages inside node-red. Please, have in mind if you start from a fresh node-red installation you must install the following packages at the palette menu before to _Deploy_ the program.
 

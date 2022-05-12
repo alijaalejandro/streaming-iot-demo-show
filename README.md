@@ -30,10 +30,10 @@ The repo includes some assets and tools as brick piezes to show some demo use ca
 * Software
 
 	- RPI SO: Raspberry PI OS lite 2020
-	- MQTT Broker - Mosquitto
+	- MQTT Broker - HiveMQ (managed cloud service)
 	- VM Linux Ubuntu en AWS
 	- Confluent Cloud
-	- MQTT mobile client apps
+	- MQTT Desktop App (MQTT Explorer)
 	- Smart Switch iOS App
 
 _Note: Students only interact with the demo at the MQTT broker point. The webcam it's just to see the real stuff. The smart lamp can be used during the forums to test programs and business logic. Some of the HW and SW pieces can be used during the course and some others not_
