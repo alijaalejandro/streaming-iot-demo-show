@@ -139,8 +139,18 @@ while True:
 
     time.sleep(int(espera))
 ```
+7. Python requirements
+	- Paho library. [link](https://pypi.org/project/paho-mqtt/). Install: ```pip install paho-mqtt```
+	- Sensirion SHT75 library. [Link](https://github.com/drohm/pi-sht1x). Install: ```pip3 install pi-sht1x```
 
+8. SHT75 connections
 
+|**Raspberry PIN**|**SHT75 PIN**|
+|---|---|
+|3 (SCK)|1 (SCK)|
+|1 (3V3)|2 (Vdd)|
+|5 (GND)|3 (GND)|
+|2 (SDA)|4 (DATA)|
 
 
 
