@@ -51,7 +51,7 @@ By using the remote webcam, we can now check what is in place. Just open the Xia
 	- Configure the broker settings:
 		- Broker Name
 		- Broker url or in our case IP
-		- Broker port (default 1883)
+		- Broker port (default 8883)
 		- Broker user & password
 	- Again get the credentials [here](/Credentials)
 
