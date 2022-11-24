@@ -87,8 +87,8 @@ import time
 import RPi.GPIO as GPIO
 from pi_sht1x import SHT1x
 
-DATA_PIN = 3
-SCK_PIN = 2
+DATA_PIN = 2
+SCK_PIN = 3
 
 temperature_inside = 0
 humidity_inside = 0
