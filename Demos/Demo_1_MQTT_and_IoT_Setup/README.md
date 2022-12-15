@@ -11,13 +11,13 @@ Our lab environment will consist on the following components:
 
 Let's do this step-by-step
 
-0. Check the set up.
+<-- 0. Check the set up.
 
 By using the remote webcam, we can now check what is in place. Just open the Xiami Mi Home app and access to the video streaming.
 
  ![Image Webcam](/images/webcam1.PNG)
  ![Image Webcam](/images/webcam2.PNG)
-
+--!>
 
 1. MQTT sender and data collection is at the RPI locally at the office.
 	Access to the supervisor and check the MQTT sender is up&running
