@@ -152,6 +152,44 @@ while True:
 |5 (GND)|3 (GND)|
 |2 (SDA)|4 (DATA)|
 
+9. Install & Configure Supervisord
+
+- Install supervisord
+	
+		sudo apt update && sudo apt install supervisor
+		sudo systemctl status supervisor
+	
+- Add configuration file
+	
+		sudo nano /etc/supervisor/conf.d/sender.conf
+
+		[program:sender]
+		command=python -u sender.py
+		directory=/home/galeo/class
+		autostart=true
+		autorestart=true
+		stderr_logfile=/var/log/sender.err.log
+		stdout_logfile=/var/log/sender.out.log
+	
+- Start process
+	
+		sudo supervisorctl reread
+		sudo supervisorctl add sender
+		sudo supervisorctl status
+	
+- Enable web control
+	
+		sudo nano /etc/supervisor/supervisord.conf
+
+		[inet_http_server]
+		port=*:9001
+		username=galeo
+		password=galeo
+	
+- Reset supervisord
+	
+		sudo supervisord restart
+
 
 
 
