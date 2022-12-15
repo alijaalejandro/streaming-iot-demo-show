@@ -66,12 +66,13 @@ You can download this cert from [here](https://letsencrypt.org/certs/isrgrootx1.
 ![Image of MQTT Data](/images/mqttexplorerdata.png)
 
 5. Activate the smart lamp to force a temperature rising (and the opposite effect in rel. humidity)
- Use the SmartLife App to activate the lamp and check the result in the real time charts at the MQTT client.
+ 
+ <!-- Use the SmartLife App to activate the lamp and check the result in the real time charts at the MQTT client.
 
  ![Image Lamp](/images/Lamp.PNG)
+-->
 
-
- 6. Bonus Track - Access the Raspberry-pi and look at the code
+# Bonus Track - Access the Raspberry-pi and look at the code
  ```bash
  	ssh pi@agallende.ddns.net
  	passwd: G@le0Tech
