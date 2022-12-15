@@ -45,6 +45,10 @@ By using the remote webcam, we can now check what is in place. Just open the Xia
 	
 
 	![HiveMQ Cluster Details](/images/hivemq1.png)
+	
+	__Note__: If you already have an older (< 2.x) version of the mosquitto CLI or tool installed, and want to use it with HiveMQ Cloud, you need to specify a trusted certificate parameter for mosquitto_pub / mosquitto_sub to use TLS. (This also works with the new version)
+
+You can download this cert from [here](https://letsencrypt.org/certs/isrgrootx1.pem) and then run the commands with the --cafile parameter pointing to the location of the certificate file.
 
 3. Get your favorite MQTT client (client or OS native) and configure your broker
 	- In this example, we are going to use [MQTT Explorer](http://mqtt-explorer.com/) _Thanks to Thomas Nordquist thomasnordquist_
