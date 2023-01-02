@@ -74,7 +74,7 @@ You can download this cert from [here](https://letsencrypt.org/certs/isrgrootx1.
 
 # Bonus Track - Access the Raspberry-pi and look at the code
  ```bash
- 	ssh pi@agallende.ddns.net
+ 	ssh galeo@agallende.ddns.net
  	passwd: G@le0Tech
  ```
  ```bash
