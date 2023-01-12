@@ -14,7 +14,7 @@ In this demo we are going to use NodeRED as a code-less automation framework. In
 
 Please note that for macOS users, we must have installed node.js and nmp before install node-red. For detailed instructions you can follow this staep-by-step video turtorial https://www.youtube.com/watch?time_continue=45&v=9cHxLJq30AI&feature=emb_logo&themeRefresh=1 
 
-3. __The node-red__ automation program for this demo. Create an empty new flow and import the sample program ```Node-red-sample-program.json``` located [here](Demos/Demo_2_NodeRED_program) at this repository. This node-red flow uses the following packages inside node-red. Please, have in mind if you start from a fresh node-red installation you must install the following packages at the palette menu before to _Deploy_ the program.
+3. __The node-red__ automation program for this demo. Create an empty new flow and import the sample program ```Node-red-sample-program.json``` located [here](https://github.com/alijaalejandro/streaming-iot-demo-show-IE/tree/main/Demos/Demo_2_NodeRED_program) at this repository. This node-red flow uses the following packages inside node-red. Please, have in mind if you start from a fresh node-red installation you must install the following packages at the palette menu before to _Deploy_ the program.
 
 - node-red-contrib-telegrambot
 - node-red-dashboard
