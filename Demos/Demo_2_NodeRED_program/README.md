@@ -10,6 +10,10 @@ In this demo we are going to use NodeRED as a code-less automation framework. In
 
 2. __A node-red installed__ in the VM. If so, just open ```http://ec2-54-173-46-11.compute-1.amazonaws.com:1880``` in your local browser. Please, have in mind that 1880 port must be enable for traffic at the VM security control menu in the AWS console.
 
+2-a __It may be great to have your local installation of Node-red in your laptop. To do this, follow this official instructions here https://nodered.org/docs/getting-started/local__
+
+Please note that for macOS users, we must have installed node.js and nmp before install node-red. For detailed instructions you can follow this staep-by-step video turtorial https://www.youtube.com/watch?time_continue=45&v=9cHxLJq30AI&feature=emb_logo&themeRefresh=1 
+
 3. __The node-red__ automation program for this demo. Create an empty new flow and import the sample program ```Node-red-sample-program.json``` located [here](Demos/Demo_2_NodeRED_program) at this repository. This node-red flow uses the following packages inside node-red. Please, have in mind if you start from a fresh node-red installation you must install the following packages at the palette menu before to _Deploy_ the program.
 
 - node-red-contrib-telegrambot
