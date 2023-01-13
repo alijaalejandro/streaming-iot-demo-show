@@ -50,3 +50,7 @@ Let's do this step-by-step
  ![Dashboard notification and sampling](/images/notifications_sampling.png)
 
  5. It's time to play. It's your time :)
+ 
+ 
+ 
+ Telegram token: 1587180371:AAEig64oMUFxN4scNKgtuNeC3LStgHWy_kI
