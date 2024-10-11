@@ -195,8 +195,6 @@ while True:
 	
 		sudo supervisord restart
 
+# Bonus 2 - DHT22 Sensor
 
-
-
-
-
+Referencia. [Link](https://www.donskytech.com/raspberry-pi-how-to-interface-with-a-dht22-sensor/?utm_content=cmp-true)
