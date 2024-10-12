@@ -51,7 +51,7 @@ def sensor_inside():
 temperature_inside = 0
 humidity_inside = 0
 dew_point_inside = 0
-espera = 1
+espera = 5
 
 client = paho.Client()
 client.on_publish = on_publish
