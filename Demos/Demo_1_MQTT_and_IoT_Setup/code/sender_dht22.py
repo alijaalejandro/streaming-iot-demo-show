@@ -46,7 +46,7 @@ def sensor_inside():
     #temperature_inside = (((temperature_inside_F - 32) / 1.8 ) / 10)
     temperature = temperature + ct
     #temperature = temperature
-    humidity_inside = humidity + ch
+    humidity = humidity + ch
     dew_point_inside = calculate_dew_point(temperature, humidity)
 
     if humidity is not None and temperature is not None:
