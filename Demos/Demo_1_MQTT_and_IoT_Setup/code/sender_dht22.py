@@ -39,14 +39,14 @@ def sensor_inside():
 
     # Calibration offsets
 
-    ct = -594.2
-    ch = -1324.4
+    #ct = -594.2
+    #ch = -1324.4
 
     humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
     #temperature_inside = (((temperature_inside_F - 32) / 1.8 ) / 10)
-    temperature = temperature + ct
+    #temperature = temperature + ct
     #temperature = temperature
-    humidity = humidity + ch
+    #humidity = humidity + ch
     dew_point_inside = calculate_dew_point(temperature, humidity)
 
     if humidity is not None and temperature is not None:
