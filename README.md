@@ -8,8 +8,8 @@ The repo includes some assets and tools as brick piezes to show some demo use ca
 
 - A demo [demo2](/Demos/Demo_2_NodeRED_program) where, starting from this firts set-up (in [demo1](/Demos/Demo_1_MQTT_and_IoT_Setup)) we can develop a simple program in Node-RED to automate and develop some custom logic.
 
-- A demo [demo3](/Demos/Demo_3_MQTT_Confluent_PowerBI) where, starting from [demo2](/Demos/Demo_2_NodeRED_program), once we have the data at the MQTT broker, we can programm a kafka producer and inyect that reading to a Confluent Cloud cluster. From here, we can play a bit with Confluent KQL streaming calculations.
-
+<!-- - A demo [demo3](/Demos/Demo_3_MQTT_Confluent_PowerBI) where, starting from [demo2](/Demos/Demo_2_NodeRED_program), once we have the data at the MQTT broker, we can programm a kafka producer and inyect that reading to a Confluent Cloud cluster. From here, we can play a bit with Confluent KQL streaming calculations.
+-->
 <!--- A demo where [demo3](/Demos/Demo_3_MQTT_Confluent_PowerBI)), starting form Confluent topics, we can programm a simple kafka consumer to get the data and send it to the real-time visualizer in Power BI.  
 -->
 
@@ -23,20 +23,16 @@ The repo includes some assets and tools as brick piezes to show some demo use ca
 	- Raspberry pi 3 - Raspberry PI OS lite 2020
 	- Sensors:
 		- TMP&HR and Dwe point - SHT75 Sensirion
-		- PM in air - PMS5003
-	- Smart Switch  TECKIN SP21
-	- Web Cam Creative VF0770
-
+		- _NEW_ Temperature and Humidity DHT22 Sensor
 * Software
 
 	- RPI SO: Raspberry PI OS lite 2020
 	- MQTT Broker - HiveMQ (managed cloud service)
-	- VM Linux Ubuntu en AWS
-	- Confluent Cloud
 	- MQTT Desktop App (MQTT Explorer)
-	- Smart Switch iOS App
+	- Node-Red running either locally or remotly
 
-_Note: Students only interact with the demo at the MQTT broker point. The webcam it's just to see the real stuff. The smart lamp can be used during the forums to test programs and business logic. Some of the HW and SW pieces can be used during the course and some others not_
+_Note: Students only interact with the demo at the MQTT broker point.
+The smart lamp can be used during the forums to test programs and business logic. Some of the HW and SW pieces can be used during the course and some others not_
 
 <!--
 # Assets and tools
