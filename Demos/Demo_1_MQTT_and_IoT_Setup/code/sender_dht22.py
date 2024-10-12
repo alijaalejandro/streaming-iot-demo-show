@@ -37,8 +37,14 @@ def calculate_dew_point(temperature, humidity):
 def sensor_inside():
     global temperature_inside, humidity_inside, dew_point_inside
 
+    # Calibration offsets
+
+    ct = -68.6
+    ch = 10 
+
     temperature_inside_F, humidity_inside = Adafruit_DHT.read_retry(sensor, pin)
     temperature_inside = (((temperature_inside_F - 32) / 1.8 ) / 10)
+    temperature_inside = temperature_inside + ct
     dew_point_inside = calculate_dew_point(temperature_inside, humidity_inside)
 
     if humidity_inside is not None and temperature_inside is not None:
