@@ -74,7 +74,7 @@ You can download this cert from [here](https://letsencrypt.org/certs/isrgrootx1.
 
 # Bonus Track - Access the Raspberry-pi and look at the code
  ```bash
- 	ssh galeo@agallende.ddns.net
+ 	ssh galeo@xxx.xxx.xxx.xxx
  	passwd: G@le0Tech
  ```
  ```bash
@@ -84,7 +84,7 @@ You can download this cert from [here](https://letsencrypt.org/certs/isrgrootx1.
 
  	You can get the code [here](/Assets/raspberry/sender.py) 
  
-```python
+<!-- ```python
 import paho.mqtt.client as paho
 from paho import mqtt
 import time
@@ -144,9 +144,12 @@ while True:
 
     time.sleep(int(espera))
 ```
+-->
+
 7. Python requirements
 	- Paho library. [link](https://pypi.org/project/paho-mqtt/). Install: ```pip install paho-mqtt```
-	- Sensirion SHT75 library. [Link](https://github.com/drohm/pi-sht1x). Install: ```pip3 install pi-sht1x```
+	- Sensirion SHT75 library. [Link](https://github.com/drohm/pi-sht1x). Install: ```pip3 install pi-sht1x
+    - Temperature and humidity DHT22 library. ```pip3 install adafruit-circuitpython-dht``` and ```pip3 install Adafruit_DHT```
 
 8. SHT75 connections
 
@@ -157,15 +160,24 @@ while True:
 |5 (GND)|3 (GND)|
 |2 (SDA)|4 (DATA)|
 
-9. Install & Configure Supervisord
+9. DHT22 connections.
+_More info here_ DHT Reference [Link](https://www.donskytech.com/raspberry-pi-how-to-interface-with-a-dht22-sensor/?utm_content=cmp-true)
+
+|**Raspberry PIN**|**DHT22 PIN**|
+|---|---|
+|1 (3V3)|+ (Vdd)|
+|6 (GND)|- (GND)|
+|12 GPIO18|2 (OUT)|
+
+10. Install & Configure Supervisord
 
 - Install supervisord
-	
+	```
 		sudo apt update && sudo apt install supervisor
 		sudo systemctl status supervisor
-	
+	```
 - Add configuration file
-	
+	```
 		sudo nano /etc/supervisor/conf.d/sender.conf
 
 		[program:sender]
@@ -175,26 +187,25 @@ while True:
 		autorestart=true
 		stderr_logfile=/var/log/sender.err.log
 		stdout_logfile=/var/log/sender.out.log
-	
+	```
 - Start process
-	
+	```
 		sudo supervisorctl reread
 		sudo supervisorctl add sender
 		sudo supervisorctl status
-	
+	```
 - Enable web control
-	
+	```
 		sudo nano /etc/supervisor/supervisord.conf
 
 		[inet_http_server]
 		port=*:9001
 		username=galeo
 		password=galeo
-	
+```
 - Reset supervisord
-	
+	```
 		sudo supervisord restart
+```
 
-# Bonus 2 - DHT22 Sensor
 
-Referencia. [Link](https://www.donskytech.com/raspberry-pi-how-to-interface-with-a-dht22-sensor/?utm_content=cmp-true)
