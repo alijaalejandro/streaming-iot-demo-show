@@ -6,7 +6,7 @@ from paho import mqtt
 
 import Adafruit_DHT
 
-sensor = Adafruit_DHT.DHT22
+sensor = Adafruit_DHT.DHT11
 pin = 18
 
 def on_publish(client, userdata, mid):
