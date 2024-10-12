@@ -43,7 +43,8 @@ def sensor_inside():
     ch = 10 
 
     temperature_inside_F, humidity_inside = Adafruit_DHT.read_retry(sensor, pin)
-    temperature_inside = (((temperature_inside_F - 32) / 1.8 ) / 10)
+    #temperature_inside = (((temperature_inside_F - 32) / 1.8 ) / 10)
+    temperature_inside = temperature_inside_F 
     temperature_inside = temperature_inside + ct
     humidity_inside = humidity_inside/ch
     dew_point_inside = calculate_dew_point(temperature_inside, humidity_inside)
