@@ -35,31 +35,31 @@ def calculate_dew_point(temperature, humidity):
     return round(dew_point, 2)
 
 def sensor_inside():
-    global temperature_inside, humidity_inside, dew_point_inside
+    global temperature, humidity, dew_point
 
     # Calibration offsets
 
     ct = -68.6
     ch = 10 
 
-    temperature_inside_F, humidity_inside = Adafruit_DHT.read_retry(sensor, pin)
+    humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
     #temperature_inside = (((temperature_inside_F - 32) / 1.8 ) / 10)
-    temperature_inside = temperature_inside_F 
-    temperature_inside = temperature_inside + ct
-    humidity_inside = humidity_inside/ch
-    dew_point_inside = calculate_dew_point(temperature_inside, humidity_inside)
+    #temperature = temperature 
+    #temperature = temperature
+    #humidity_inside = humidity
+    dew_point_inside = calculate_dew_point(temperature, humidity)
 
-    if humidity_inside is not None and temperature_inside is not None:
-        print('Temp={0:0.1f}*C  Humidity={1:0.1f}%  Dewpoint={0:0.1f}*C'.format(temperature_inside, humidity_inside, dew_point_inside))
+    if humidity is not None and temperature is not None:
+        print('Temp={0:0.1f}*C  Humidity={1:0.1f}%  Dewpoint={0:0.1f}*C'.format(temperature, humidity, dew_point))
     else:
         print('Failed to get reading. Try again!')
 
     print("data_inside complete")
 
-temperature_inside = 0
-humidity_inside = 0
-dew_point_inside = 0
-espera = 5
+temperature = 0
+humidity = 0
+dew_point = 0
+espera = 1
 
 client = paho.Client()
 client.on_publish = on_publish
@@ -76,8 +76,8 @@ client.subscribe("cmdn/sampling", qos=0)
 while True:
     sensor_inside()
 
-    (rc, mid) = client.publish("telemetry/temperature_indoor", str(temperature_inside), qos=0)
-    (rc, mid) = client.publish("telemetry/humidity_indoor", str(humidity_inside), qos=0)
-    (rc, mid) = client.publish("telemetry/dew_point_indoor", str(dew_point_inside), qos=0)
+    (rc, mid) = client.publish("telemetry/temperature_indoor", str(temperature), qos=0)
+    (rc, mid) = client.publish("telemetry/humidity_indoor", str(humidity), qos=0)
+    (rc, mid) = client.publish("telemetry/dew_point_indoor", str(dew_point), qos=0)
     
     time.sleep(int(espera))
